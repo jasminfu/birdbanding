@@ -1,0 +1,105 @@
+<head>
+  <title>Songbird Molt Diagrams for Bird Banding</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<nav><center>
+    <button class = "navi" onclick="window.location.reload()">Molt Cycles</button>
+    <button class = "navi"  onclick="openExtent()">Extent of Molt</button>
+    <button class = "navi"  onclick="openPB()">Prebasic Molt Sequence</button>
+    <button class = "navi"  onclick="openContact()">Contact</button></center>
+</nav>
+<div id="contactModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Contact</h2>
+            <p>Do you have comments/concerns?</p><p>Please message me on <a href = "https://www.instagram.com/jasburd/">Instagram</a>.</p>
+            
+        </div>
+    </div>
+<div id="main">
+<div id="switcher" class="switch-wrapper">
+  <span class="switch-label" style="text-align: right"><img src="cbs.png" width="180"><br>Complex Basic Strategy<br>(no breeding plumage in Spring)</span>
+
+  <label class="switch">
+    <input type="checkbox" id="svg-switch">
+    <span class="slider"></span>
+  </label>
+
+  <span class="switch-label"><img src="cas.png" width="180"><br>Complex Alternate Strategy<br>(molts into breeding plumage in Spring)</span>
+</div>
+
+
+
+<center><table><tr>
+      <td style="width: 650px;"><div id="svg-container"></div>
+    </td>
+      <td style="width: 350px; vertical-align: top;">
+    
+    <div id="cycle-notes"><div class="overlay-text">
+        <h2 id="overlay-title">Click on the diagram to learn about each part of the cycle.</h2>
+        <div id="overlay-content" style="font-size: 12px;"><br><b>Notes by the illustrator</b><br> The molt arrows are more responsive if you click on them at the ends.<br>The illustration's length of seasons are not proportionate to actual time.<br><br>
+  <b>*Migration</b><br>Some individuals may molt before, during or after migration. Some individuals may not migrate.<br>Consult the Pyle guide for more information on molt timing.<br><br><b>**Calendar Ages</b><br>Hatch Year (HY) birds turn into Second Year (SY) birds on January 1st.<br>After Hatch Year (AHY) birds turn into After Second Year (ASY) birds on January 1st.<br>All birds in photos on this site were taken with proper US Federal bird banding permits.<br><br></div>
+</div></div>
+<div id="pb-notes" style="display:none;"><br><br><br><div id="controls">
+        <h2>Use the slider to molt!</h2>
+        <input type="range" id="visibility-slider" style = "width:300px;" min="0" max="10" value="0">
+        <span id="current-value" style="display:none;">0</span>
+        <p id="frame-notes" style="font-size: 12px;"></p>
+    </div></div>
+<div id="extent-notes" style="display:none;"><br><br><br><h2>Click on each button to learn about extents of molt.</h2><p>The highlighted feathers are replaced in the corresponding molts.</p><div id="extent-btns" style="text-align:center; display:none"><table><tr><td><img src="limited.png" width="70px"></td><td><img src="partial.png" width="70px"></td><td><img src="incomplete.png" width="70px"></td><td><img src="complete.png" width="70px"></td></tr><tr><td><button style="background:#8BC751;" onclick="openLimited()">Limited</button></td><td><button style="background:#F7F298;" onclick="openPartial()">Partial</button></td><td><button style="background:#F99D1D;" onclick="openEccentric()">Incomplete</button></td><td><button style="background:#ED2024;" onclick="openComplete()">Complete</button></td></tr></table></div><br><br><div id="limited-notes" style="display:none;; font-size:12px;">
+    <h3>Limited</h3>
+    In a <b>limited molt</b>, some body feathers, lesser coverts, and maybe some median coverts are replaced.<p>Some buntings/cardinals have a auxiliary preformative molt (FPX), in which some body feathers, median coverts and lesser coverts are replaced. This is a separate molt from the preformative molt (PF). In the picture below, the median coverts are fresh while the greater coverts are retained and juvenile.<br><br><img src="limitedpic.png" width="300px"><br>All activities pictured were done under US Federal Banding Permits.</p>
+  </div>
+  <div id="partial-notes" style="display:none; font-size:12px;">
+    <h3>Partial</h3>
+    <p>In a <b>partial molt</b>, all body feathers and lesser coverts are replaced.</p>
+    <p>Some to all median and greater coverts are replaced.</p>
+    <p>The alula covert (A1), carpal covert, tertials and center rectrices may be replaced.</p>
+    <p>Exact extent of partial molt depends on species. Please consult the Pyle guide.</p><p>In the picture below, the Eastern Phoebe has replaced all greater coverts except the 3 outer ones, creating a molt limit.<br><br><img src="partialpic.png" width="300px"><br>All activities pictured were done under US Federal Banding Permits.</p>
+  </div>
+  <div id="incomplete-notes" style="display:none; font-size:12px;">
+    <h3>Incomplete</h3>
+    <p>In an <b>incomplete molt</b>, flight feathers on the wing are replaced.</p><p>Incomplete molts can be eccentric or typical.</p><p>In an eccentric molt, innermost secondaries and outermost primaries are replaced.</p><p>In a typical molt, innermost primaries and outermost secondaries are replaced.</p><button id="typicalBtn" onclick = "openTypical()">Show typical molt pattern</button><button id="eccentricBtn" onclick = "openEccentric()">Show eccentric molt pattern</button><p>In the picture below, the Carolina Wren has replaced some outer primaries and inner secondaries as evident from bar density, creating a molt limit.<br><br><img src="incompletepic.png" width="300px"><br>All activities pictured were done under US Federal Banding Permits.</p>
+  </div>
+  <div id="complete-notes" style="display:none; font-size:12px;">
+    <h3>Complete</h3>
+    All feathers are replaced. <p>After a complete molt, first-cycle birds exhibit no plumage differences from definitive-cycle birds.</p><p>Depending on the species, it is possible that first-cycle birds may retain juvenile underwing coverts.</p><p>Typically, prebasic molts (PB) are complete and follow a predictable pattern.</p><button onclick="openPB()">Explore molt sequence</button>
+  </div></div>
+  </td>
+    </tr></table></center>
+
+
+
+
+  
+  
+<div id="show-container" style="text-align:center;">
+  <b>Show or Hide Elements</b>
+<div id="cycle-show">
+  <label>
+    <input type="checkbox" class="toggle-control" data-target="annotations" checked>
+    Behavior Annotations
+  </label>
+  
+  <label>
+    <input type="checkbox" class="toggle-control" data-target="hp" checked>
+    Calendar Age
+  </label>
+  
+  <label>
+    <input type="checkbox" class="toggle-control" data-target="wrp" checked>
+    Wolfe-Ryder-Pyle (WRP) Codes
+  </label>
+  
+  <label>
+    <input type="checkbox" class="toggle-control" data-target="plumagenames" checked>
+    Plumage Names
+  </label>
+  </div>
+<div id="tracts-show" style="display:none;">
+  <label>
+    <input type="checkbox" class="toggle-control" data-target="text" checked>
+    Feather Numbering
+  </label>
+</div>
+</div>
+<script src="script.js"></script>

@@ -1,0 +1,318 @@
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+   
+/* Updated checkbox container styling */
+.switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Increased gap */
+  margin: 16px 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.switch-label {
+  font-size: 16px;
+  color: #2c3e50;
+  font-weight: 500;
+  user-select: none;
+  flex: 1;
+}
+
+/* Switch base - slightly refined */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+/* Hide native checkbox but keep accessible */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.navi {
+  /* Layout and Typography */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 6px; 
+  margin: 0 5px;
+
+  /* Visual Style - Outline/Ghost */
+  background: transparent;
+  color: black; /* Dark text for contrast */
+  border: 1px solid #DFC5FE; /* Light, soft gray border */
+  box-shadow: none;
+
+  /* Transitions */
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+button {
+  font-size:15px;
+  border-radius: 16px;
+  cursor: pointer;
+  border: 1px solid transparent; 
+  border-radius: 6px; 
+  margin: 0 5px;
+  /* Transitions */
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+
+
+
+/* Slider background with gradient */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 34px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, #3A7BFF, #5C9AFF);
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    0 2px 8px #DFC5FE;
+}
+
+/* Slider knob with more depth */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 3px;
+  bottom: 3px;
+  background: linear-gradient(180deg, #ffffff, #f5f5f5);
+  border-radius: 50%;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 0 0 2px rgba(255, 255, 255, 0.9);
+  z-index: 2;
+}
+
+/* Active/click effect */
+.switch input:active + .slider:before {
+  width: 28px;
+}
+
+.switch input:focus-visible + .slider {
+  outline: 2px solid #DFC5FE;
+  outline-offset: 2px;
+}
+
+/* When toggle is ON → RED gradient */
+input:checked + .slider {
+  background: linear-gradient(135deg, #FF5252, #FF7B7B);
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(255, 82, 82, 0.3);
+}
+
+/* Move knob when ON with bounce effect */
+input:checked + .slider:before {
+  transform: translateX(26px);
+  box-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.25),
+    0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
+/* Disabled state */
+.switch input:disabled + .slider {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #cccccc;
+}
+
+/* Optional: Add checkmark icon on the toggle */
+.slider:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+  left: 8px;
+  transform: translateY(-50%) scale(0);
+  opacity: 0;
+  transition: all 0.35s ease;
+}
+
+input:checked + .slider:after {
+  transform: translateY(-50%) scale(1);
+  opacity: 1;
+  left: 38px;
+}
+
+/* Optional: Status indicator text */
+.switch-wrapper::after {
+  color: #666;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 8px;
+  opacity: 0.7;
+}
+
+input:checked ~ .switch-wrapper::after {
+  color: #FF5252;
+}
+
+/* Group container styling for your show-container */
+#show-container {
+  background: linear-gradient(135deg, #F8F2FF 0%, #ffffff 100%);
+  font-size: 12px;
+  border-radius: 16px;
+  padding:  12px 12px;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  border: 1px solid #DFC5FE;
+}
+
+#show-container label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+#show-container label:hover {
+  background: #DFC5FE;
+  border-radius: 8px;
+}
+
+/* Add a subtle indicator for which elements are visible */
+.switch-wrapper.active .switch-label {
+  color: #3A7BFF;
+  font-weight: 600;
+}
+
+input:checked ~ .switch-label {
+  color: #FF5252;
+}
+
+[id*="fc"],
+[id*="dc"], 
+[id*="sp"],
+[id*="baby"],
+[id*="fp"],
+[id*="barrow"],
+[id*="farrow"],
+[id*="jarrow"],
+[id*="aarrow"]{
+  transition: filter 0.3s ease;
+  cursor:pointer;
+}
+
+[id*="fc"]:hover,
+[id*="dc"]:hover, 
+[id*="sp"]:hover,
+[id*="baby"]:hover,
+[id*="fp"]:hover,
+[id*="barrow"]:hover,
+[id*="farrow"]:hover,
+[id*="jarrow"]:hover,
+[id*="aarrow"]:hover {
+  filter: drop-shadow(0 0 10px #DFC5FE);
+}
+
+#tracts {
+  opacity: 0;
+}
+  
+#limited {
+      display: none;
+    }
+#partial {
+      display: none;
+    }
+#eccentric {
+      display: none;
+    }
+#typical {
+      display: none;
+    }
+#complete {
+      display: none;
+    }
+.hidden-element {
+    visibility: hidden;
+}
+
+/* When the JavaScript adds the 'visible-element' class, it becomes visible */
+.visible-element {
+    visibility: visible;
+}
+
+.modal-overlay {
+    /* Covers the entire viewport */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Centers the modal content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* The Blur Effect (Apply to the semi-transparent background) */
+    background-color: rgba(0, 0, 0, 0.4); /* Darkens the background */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* For Safari compatibility */
+
+    /* Hiding the modal by default */
+    opacity: 0;
+    pointer-events: none; /* Allows clicks to pass through when hidden */
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+/* --- Active State (Shown with JS) --- */
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto; /* Re-enable clicks when visible */
+}
+
+/* --- Modal Content Styles (The actual popup box) --- */
+
+.modal-content {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    text-align: center;
+    /* Prevent the modal content itself from closing the modal when clicked */
+    pointer-events: none; 
+}
+
+/* Make sure the text and elements inside the content box are clickable/selectable */
+.modal-content > * {
+    pointer-events: all;
+}
