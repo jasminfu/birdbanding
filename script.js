@@ -141,14 +141,15 @@ const popupData = {
     }
 };
 
-
-// --- STEP 2: LOAD SVG ---
 function loadSVG(file) {
   fetch(file)
     .then(r => r.text())
     .then(svgText => {
       svgContainer.innerHTML = svgText;
       currentSVG = svgContainer.querySelector("svg");
+      currentSVG.style.width = "600px";
+      currentSVG.style.height = "auto"; // preserve aspect ratio
+      currentSVG.style.maxWidth = "100%"; // responsive safety
     })
     .catch(err => console.error(err));
 }
