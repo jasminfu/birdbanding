@@ -101,7 +101,7 @@ const popupData = {
     },
     'dcbwinter': {
       title:'Definitive Cycle Basic - DCB (AHY → ASY) in Winter',
-      text:'The bird is now in its wintering grounds. <br><br>On January 1st, this After Hatch Year (AHY) turn into an After Second Year (SY) bird. <br><br>Despite this change in aging terms, nothing biologically significant is happening with the bird.'
+      text:'The bird is now in its wintering grounds. <br><br>On January 1st, this After Hatch Year (AHY) turn into an After Second Year (ASY) bird. <br><br>Despite this change in aging terms, nothing biologically significant is happening with the bird.'
     },
     'dpaarrow': {
       title:'Definitive Prealternate Molt - DPA (ASY)',
