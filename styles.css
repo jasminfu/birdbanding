@@ -239,8 +239,16 @@ input:checked ~ .switch-label {
   filter: drop-shadow(0 0 10px #DFC5FE);
 }
 
-#tracts {
-  opacity: 0;
+#pp, #ss, #terts, #mcovs, #rec, #carpal, #alula, #pcov, #gcov, #lcov {
+  opacity: 0.1;
+  pointer-events: all;
+}
+
+#pp:hover, #ss:hover, #terts:hover, #mcovs:hover, #rec:hover, #carpal:hover, #alula:hover, #pcov:hover, #gcov:hover, #lcov:hover {
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  cursor:pointer;
+  pointer-events: all;
 }
   
 #limited {
@@ -292,14 +300,11 @@ input:checked ~ .switch-label {
     z-index: 1000;
 }
 
-/* --- Active State (Shown with JS) --- */
 
 .modal-overlay.active {
     opacity: 1;
     pointer-events: auto; /* Re-enable clicks when visible */
 }
-
-/* --- Modal Content Styles (The actual popup box) --- */
 
 .modal-content {
     background: white;
