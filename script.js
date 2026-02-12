@@ -136,7 +136,47 @@ const popupData = {
     'dpbarrow': {
       title:'Definitive Prebasic Molt - DPB (ASY → AHY)',
       text:'After breeding, the bird will undergo a prebasic molt. <br>Most species replace all their feathers in this molt. <br><br>Molt timing varies between species and individuals.<br><br>Birds replace their feathers sequentially in this molt, resulting in nice quality fresh feathers<br><br>This is the time when first-cycle birds also replace all feathers sequentially, and look similar to definitive-cycle birds. Near the tail end of the prebasic molt, you cannot reliably call birds After Second Year. You should call these birds After Hatch Year birds.<br><br><button onclick="openPB()">Explore molt sequence</button><br><br>In the picture below, a Common Grackle is just starting its prebasic molt, entering the next cycle. There are no retained juvenile feathers on the underwing, so we know it is at least 2 years old. <br><br><img src="dpb.png" width="350px"><br>All activities pictured were done under US Federal Banding Permits.'
-    }
+    },
+  'pp': {
+        title: 'Primary feathers / Primaries (pp)',
+        text: 'There are 9-10 primary feathers depending on family. In a typical incomplete or prebasic molt, these feathers replace outwards in the order in which they are numbered (p1 is molted first).<br><br>Primaries are used for forward thrust and steering.'
+    },
+    'ss': {
+        title: 'Secondary feathers / Secondaries (ss)',
+        text: 'There are 9 secondary feathers on songbirds. When replaced in a complete or a typical incomplete molt, s1 is molted first. <br><br>Secondaries are for generating lift and stability.<br><br>The 3 innermost secondaries are called the tertials.'
+    },
+    'tert': {
+        title: 'Tertial feathers / Tertials (terts)',
+        text: 'The 3 innermost secondaries are called the tertials. These feathers may be replaced in a partial molt, and are usually replaced before the secondaries.<br><br>The tertials protect the rest of the flight feathers from wear. The tertials may also provide color for breeding plumage.<br><br>'
+    },
+    'mcovs': {
+        title: 'Median Coverts (med covs)',
+        text: 'The median coverts are directly above the greater coverts.<br><br>The median coverts cover the feather shafts of the greater coverts.<br><br>They can be classified as body plumage.'
+    },
+    'lcov': {
+        title: 'Lesser Coverts (les covs)',
+        text: 'The lesser coverts are located above the median coverts<br><br>They overlap the feather shafts of the median coverts to reduce drag and streamline airflow.<br><br>They can be classified as body plumage.'
+    },
+    'gcov': {
+        title: 'Greater Coverts (gr covs)',
+        text: 'The greater coverts are located above the secondaries<br><br>They cover the shafts of the secondary feathers.<br><br>They can be classified as body plumage.'
+    },
+    'rec': {
+        title: 'Rectrices (recs)',
+        text: 'There are 6 rectrices on a songbird (singular: rectrix). <br><br>They help stabilize, steer, brake flight.<br><br>Rectrices are often replaced simultaneously in a molt.'
+    },
+    'pcov': {
+        title: 'Primary Coverts (p covs)',
+        text: 'The primary coverts are located above the primaries. <br><br>They cover the shaft of the primary feathers. For each primary, there is a corresponding primary covert.<br><br>In a complete molt, when a bird molts a primary, the corresponding primary covert also molts with it.<br><br>An exception is when the bird is doing an eccentric incomplete molt. In this molt, the primary covert may not molt with its corresponding primary.'
+    },
+    'alula': {
+        title: 'Alula',
+        text: 'The alula is the thumb of the bird and consists of 3 feathers. <br><br>The alula is used for slowing flight, landing and taking off.<br><br>A1 is called the alula covert. A3 is the greater alula.<br><br>You may find molt limits here for birds that do a partial molt. However, A3 typically receives more wear than the other 2 alula feathers because of its location.'
+    },
+    'carpal': {
+        title: 'Carpal Covert',
+        text: 'The carpal covert is the one feather located between the primary coverts and greater coverts. <br><br>The carpal covert covers the shafts between the two tracts.'
+    },
 };
 
 function loadSVG(file) {
@@ -152,6 +192,19 @@ function loadSVG(file) {
     .catch(err => console.error(err));
 }
 
+function openFeathers() {
+  loadSVG("feather.svg");
+  document.getElementById("switcher").style.display = "none";
+  document.getElementById("cycle-notes").style.display = "block";
+  overlayTitle.textContent = 'Wing Feather Tracts';
+  overlayContent.textContent = 'Hover to discover the feather tracts on the wing!';
+  document.getElementById("pb-notes").style.display = "none";
+  document.getElementById("extent-btns").style.display = "none";
+  document.getElementById("extent-notes").style.display = "none";
+  document.getElementById("cycle-show").style.display = "none";
+  document.getElementById("tracts-show").style.display = "block";
+}
+
 function openPB() {
   loadSVG("tractspb.svg");
   document.getElementById("switcher").style.display = "none";
@@ -164,7 +217,7 @@ function openPB() {
 }
 
 function openExtent() {
-  loadSVG("tracts.svg");
+  loadSVG("extents.svg");
   
   document.getElementById("switcher").style.display = "none";
   document.getElementById("cycle-notes").style.display = "none";
@@ -232,36 +285,20 @@ function openComplete() {
     document.getElementById("complete-notes").style.display = "block";
 }
 
-function openContact() {
-  
-}
-
-// Default load
-loadSVG("cbs.svg");
-
-// --- STEP 3: ROBUST CLICK LISTENER ---
 svgContainer.addEventListener('click', function (e) {
-    // Start with the element that was actually clicked
     let currentElement = e.target;
-
-    // Traverse up the DOM tree until we hit the container or find a match
     while (currentElement && currentElement !== svgContainer) {
-        
         const id = currentElement.id;
-
-        // CHECK 1: Is this a Cycle Diagram part? (from popupData)
         if (popupData[id]) {
             const data = popupData[id];
             overlayTitle.textContent = data.title;
             overlayContent.innerHTML = data.text;
-            return; // Stop looking once found
+            return;
         }
-
-        // If no match, move up to the parent element and try again
         currentElement = currentElement.parentElement;
     }
 });
-
+loadSVG("cbs.svg");
 document.getElementById("svg-switch").addEventListener("change", function () {
   const file = this.checked ? "cas.svg" : "cbs.svg";
   loadSVG(file);
