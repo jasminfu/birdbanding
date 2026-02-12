@@ -6,8 +6,6 @@ const slider = document.getElementById('visibility-slider');
 const currentValueSpan = document.getElementById('current-value');
 const totalElements = 11; // f0 to f10 is 11 elements
 const frameNotesDiv = document.getElementById('frame-notes');
-
-// --- STEP 1: DEFINE YOUR CONTENT HERE ---
 const frameNotes = {
     0: "At the end of each cycle, most passerines will do a complete molt. The sequence of a complete molt is predictable and shown here.<br><br> The molt in which most to all feathers are replaced at the end of a cycle is called a <b>prebasic molt (PB)</b>.<p>Some passerines will also molt all feathers in the preformative molt (PF), such as swallows and blackbirds.</p><p>The Bobolink has a complete prealternate molt (PA).</p>",
     1: "The bird will replace p1 first. As each primary molts, the corresponding primary covert also molts. The primaries molt outward.",
@@ -264,9 +262,6 @@ svgContainer.addEventListener('click', function (e) {
     }
 });
 
-// --- STEP 4: CLOSE OVERLAY ---
-
-// --- YOUR EXISTING SWITCH LOGIC ---
 document.getElementById("svg-switch").addEventListener("change", function () {
   const file = this.checked ? "cas.svg" : "cbs.svg";
   loadSVG(file);
@@ -284,14 +279,10 @@ document.getElementById('show-container').addEventListener('change', function(e)
 
 function updateSVGVisibility() {
     const sliderValue = parseInt(slider.value, 10);
-    currentValueSpan.textContent = sliderValue; // Update the display number
-
-    // --- 2. Update the Text Frame ---
-    // Use the sliderValue to look up the corresponding text in the frameNotes object.
+    currentValueSpan.textContent = sliderValue;
     frameNotesDiv.innerHTML = frameNotes[sliderValue] || "Note: Caption not found for this stage.";
     // ---------------------------------
 
-    // --- 3. Update SVG Visibility (Same as before) ---
     for (let i = 0; i < totalElements; i++) {
         const elementId = `f${i}`;
         const element = document.getElementById(elementId);
@@ -309,39 +300,21 @@ function updateSVGVisibility() {
     }
 }
 
-// 1. Initial State: Run the function once when the page loads to set the initial visibility (default value is 0)
 updateSVGVisibility();
-
-// 2. Event Listener: Attach the function to the 'input' event of the slider.
-// 'input' fires continuously as the slider is dragged, providing a smooth effect.
-// Use 'change' if you only want it to update when the user releases the slider.
 slider.addEventListener('input', updateSVGVisibility);
-
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('contactModal');
-
-    // Function to open the modal (called by the button's onclick attribute)
     window.openContact = function() {
         modal.classList.add('active');
     };
-
-    // Function to close the modal
     function closeContact() {
         modal.classList.remove('active');
     }
-
-    // Event Listener to close the modal when clicking the blurred background
-    // We listen for clicks on the entire modal overlay.
     modal.addEventListener('click', function(e) {
-        
-        // Check if the click occurred directly on the modal-overlay div,
-        // and NOT on the actual modal-content box itself.
         if (e.target.classList.contains('modal-overlay')) {
             closeContact();
         }
     });
-
-    // OPTIONAL: Close modal when the ESC key is pressed
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeContact();
