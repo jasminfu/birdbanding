@@ -171,7 +171,7 @@ const popupData = {
     },
     'alula': {
         title: 'Alula',
-        text: 'The alula is the thumb of the bird and consists of 3 feathers. <br><br>The alula is used for slowing flight, landing and taking off.<br><br>A1 is called the alula covert. A3 is the greater alula.<br><br>You may find molt limits here for birds that do a partial molt. However, A3 typically receives more wear than the other 2 alula feathers because of its location.'
+        text: 'The alula is the thumb of the bird and consists of 3 feathers. <br><br>The alula is used for slowing flight, landing and taking off.<br><br>A1 is called the alula covert. A2 is called the lesser alula. A3 is the greater alula.<br><br>You may find molt limits here for birds that do a partial molt. However, A3 typically receives more wear than the other 2 alula feathers because of its location.'
     },
     'carpal': {
         title: 'Carpal Covert',
